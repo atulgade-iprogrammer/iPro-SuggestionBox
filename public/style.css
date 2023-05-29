@@ -1,0 +1,11 @@
+body {
+  background-color: rgb(6, 45, 79);
+  background-image: url("./flat-lay-clean-office-desk.jpg");
+  /* background-position: center; */
+  /* height: 100px; */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+textarea {
+  width: 50rem;
+}
