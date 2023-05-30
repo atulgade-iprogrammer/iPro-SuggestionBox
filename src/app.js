@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const router = require("../router/router");
 const path = require("path");
+const cookieParser = require('cookie-parser');
 var bodyParser = require("body-parser");
+
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // listening on Port 8000

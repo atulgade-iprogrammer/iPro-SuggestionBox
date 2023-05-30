@@ -8,13 +8,18 @@ btn.addEventListener("click", () => {
     alert("Please enter proper feedback!");
     return;
   }
- const text= feedback.value;
- const words = text.trim().split(/\s+/);
- if(words.length>500){
-  alert("Please enter less than 500 words!");
-  return;
- }
-
+  const text = feedback.value;
+  const words = text.trim().split(/\s+/);
+  if (words.length > 500) {
+    alert("Please enter less than 500 words!");
+    return;
+  }
+  try {
+   let locationObject = trackLocation();
+    console.log(locationObject);
+  } catch (error) {
+    console.log(error);
+  }
   btn.style.display = "none";
   loader_btn.style.display = "";
 
@@ -50,3 +55,23 @@ btn.addEventListener("click", () => {
     })
     .catch((error) => console.log(error));
 });
+
+async function trackLocation () {
+  let locationObject;
+  if (navigator.geolocation) {
+    await navigator.geolocation.getCurrentPosition(function (position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      locationObject = {
+        latitude: latitude,
+        longitude: longitude,
+      };
+      document.cookie = `location=${latitude},${longitude};path=/`;
+      // Send an event to Google Analytics
+      gtag("event", "location_tracked", {
+        location: `${latitude},${longitude}`,
+      });
+    });
+  }
+  return locationObject;
+}
