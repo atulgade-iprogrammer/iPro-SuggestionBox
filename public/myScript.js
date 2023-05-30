@@ -15,7 +15,7 @@ btn.addEventListener("click", () => {
     return;
   }
   try {
-   let locationObject = trackLocation();
+    let locationObject = trackLocation();
     console.log(locationObject);
   } catch (error) {
     console.log(error);
@@ -56,7 +56,7 @@ btn.addEventListener("click", () => {
     .catch((error) => console.log(error));
 });
 
-async function trackLocation () {
+async function trackLocation() {
   let locationObject;
   if (navigator.geolocation) {
     await navigator.geolocation.getCurrentPosition(function (position) {
@@ -75,3 +75,13 @@ async function trackLocation () {
   }
   return locationObject;
 }
+
+countWord = (text) => {
+  let spaces = text.value.match(/\s+/g);
+  let words = spaces
+    ? spaces.length < 10
+      ? "0" + spaces.length
+      : spaces.length
+    : 0;
+  document.getElementById("wordCounter").innerHTML = "Words :" + words + "/500";
+};
