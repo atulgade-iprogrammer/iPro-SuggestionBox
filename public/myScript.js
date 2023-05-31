@@ -3,7 +3,10 @@ const btn = document.getElementById("submit");
 const loader_btn = document.getElementById("submit_loader");
 // console.log(btn);
 loader_btn.style.display = "none";
+
+
 btn.addEventListener("click", () => {
+
   if (feedback.value == "") {
     alert("Please enter proper feedback!");
     return;
@@ -15,7 +18,7 @@ btn.addEventListener("click", () => {
     return;
   }
   try {
-    let locationObject = trackLocation();
+    // let locationObject = trackLocation();
     console.log(locationObject);
   } catch (error) {
     console.log(error);
@@ -57,25 +60,25 @@ btn.addEventListener("click", () => {
     .catch((error) => console.log(error));
 });
 
-async function trackLocation() {
-  let locationObject;
-  if (navigator.geolocation) {
-    await navigator.geolocation.getCurrentPosition(function (position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      locationObject = {
-        latitude: latitude,
-        longitude: longitude,
-      };
-      document.cookie = `location=${latitude},${longitude};path=/`;
-      // Send an event to Google Analytics
-      gtag("event", "location_tracked", {
-        location: `${latitude},${longitude}`,
-      });
-    });
-  }
-  return locationObject;
-}
+// async function trackLocation() {
+//   let locationObject;
+//   if (navigator.geolocation) {
+//     await navigator.geolocation.getCurrentPosition(function (position) {
+//       const latitude = position.coords.latitude;
+//       const longitude = position.coords.longitude;
+//       locationObject = {
+//         latitude: latitude,
+//         longitude: longitude,
+//       };
+//       document.cookie = `location=${latitude},${longitude};path=/`;
+//       // Send an event to Google Analytics
+//       gtag("event", "location_tracked", {
+//         location: `${latitude},${longitude}`,
+//       });
+//     });
+//   }
+//   return locationObject;
+// }
 
 countWord = (text) => {
   let spaces = text.value.match(/\s+/g);
