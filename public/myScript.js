@@ -42,10 +42,11 @@ btn.addEventListener("click", () => {
     body: JSON.stringify(info),
   })
     .then((data) => {
-      if (data.status == 400) {
+      if (data.status == 406) {
         alert("Something Went Wrong!");
-      } else if (data.status == 200) {
-        alert("Your response submitted successfully!");
+      } else if (data.status == 202) {
+        // alert("Your response submitted successfully!");
+        location.href = "/responseSubmitted";
       }
     })
     .then((data) => {
@@ -82,6 +83,6 @@ countWord = (text) => {
     ? spaces.length < 10
       ? "0" + spaces.length
       : spaces.length
-    : 0;
-  document.getElementById("wordCounter").innerHTML = "Words :" + words + "/500";
+    : "00";
+  document.getElementById("wordCounter").innerHTML = "Words: " + words + "/500";
 };

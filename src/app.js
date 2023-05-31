@@ -17,3 +17,7 @@ app.use(express.static(htmlPath));
 app.get("/", (req, res) => {
   res.sendFile(htmlPath + "/index.html");
 });
+
+app.get("/responseSubmitted",(req,res)=>{
+  res.sendFile(htmlPath + "/thankyou_page.html");
+})

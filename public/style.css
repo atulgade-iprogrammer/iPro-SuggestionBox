@@ -9,7 +9,6 @@ body {
 textarea {
   width: 50rem;
 }
-#wordCounter {
-  color: gray;
+#message {
+  text-align: justify;
 }
-
