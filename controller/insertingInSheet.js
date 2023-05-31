@@ -1,4 +1,3 @@
-
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const credentials = require("../testproject-388207-981ad0337879.json");
 const request = require("postman-request");
@@ -24,6 +23,7 @@ insertData = async (req, res) => {
     const date = req.body.date;
 
     const location = req.cookies.location;
+    let cityName;
     // console.log("Cookie", req.cookies);
     if (location) {
       const [latitude, longitude] = location.split(",");
@@ -39,17 +39,18 @@ insertData = async (req, res) => {
             reject(error);
           } else {
             // Extract the city name from the response body
-            const cityName = body[0]?.name;
+            cityName = body[0]?.name;
             // console.log(cityName); // Output: City name (if available) or undefined
             resolve(cityName);
           }
         });
       });
 
-      const insertion = { Date: date, Feedback: feedback, City: city };
-
-      await sheet.addRow(insertion);
+      //  insertion = { Date: date, Feedback: feedback, City: city };
     }
+    let insertion = { Date: date, Feedback: feedback, City: cityName };
+
+    await sheet.addRow(insertion);
     res.status(202).send({ message: "Success!" });
   } catch (error) {
     // console.log(error);
